@@ -518,6 +518,12 @@ byte water_time_encode_signed(int16_t i) {
 	i=(i<-600)?-600:i;
 	return (i+600)/5;
 }
+// [ip] to support large delay times
+byte water_time_encode_signed_variable(int16_t i, byte divr, int16_t limit) {
+  i=(i>limit)?limit:i;
+  i=(i<-limit)?-limit:i;
+  return (i+limit)/divr;
+}
 
 // decode a 8-bit unsigned byte (0 to 240)
 // to a 16-bit signed water time (-600 to 600)
@@ -525,7 +531,11 @@ int16_t water_time_decode_signed(byte i) {
 	i=(i>240)?240:i;
 	return ((int16_t)i-120)*5;
 }
-
+// [ip] to support large delay times
+int16_t water_time_decode_signed_variable(byte i, byte divr, int16_t limit) {
+  i=(i>limit)?limit:i;
+  return ((int16_t)i-limit/2)*divr;
+}
 
 /** Convert a single hex digit character to its integer value */
 static unsigned char h2int(char c) {

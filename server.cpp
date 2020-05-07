@@ -979,11 +979,12 @@ void server_json_options_main() {
 		
 		int32_t v=os.iopts[oid];
 		if (oid==IOPT_MASTER_OFF_ADJ || oid==IOPT_MASTER_OFF_ADJ_2 ||
-				oid==IOPT_MASTER_ON_ADJ  || oid==IOPT_MASTER_ON_ADJ_2 ||
-				oid==IOPT_STATION_DELAY_TIME) {
+				oid==IOPT_MASTER_ON_ADJ  || oid==IOPT_MASTER_ON_ADJ_2) {
 			v=water_time_decode_signed(v);
 		}
-		
+	    if (oid==IOPT_STATION_DELAY_TIME) {
+			v=water_time_decode_signed_variable(v,60,234);
+		}
 		#if defined(ARDUINO)
 		if (oid==IOPT_BOOST_TIME) {
 			if (os.hw_type==HW_TYPE_AC || os.hw_type==HW_TYPE_UNKNOWN) continue;
@@ -1386,10 +1387,12 @@ void server_change_options()
 		if(findKeyVal(p, tmp_buffer, TMP_BUFFER_SIZE, tbuf2)) {
 			int32_t v = atol(tmp_buffer);
 			if (oid==IOPT_MASTER_OFF_ADJ || oid==IOPT_MASTER_OFF_ADJ_2 ||
-					oid==IOPT_MASTER_ON_ADJ  || oid==IOPT_MASTER_ON_ADJ_2  ||
-					oid==IOPT_STATION_DELAY_TIME) {
+					oid==IOPT_MASTER_ON_ADJ  || oid==IOPT_MASTER_ON_ADJ_2) {
 				v=water_time_encode_signed(v);
 			} // encode station delay time
+			if (oid==IOPT_STATION_DELAY_TIME) {
+				v=water_time_encode_signed_variable(v,60,7020);
+			}
 			if(oid==IOPT_BOOST_TIME) {
 				 v>>=2;
 			}
