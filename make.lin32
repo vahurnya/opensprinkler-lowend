@@ -5,11 +5,11 @@ LIBS = . \
   $(ESP_LIBS)/ESP8266WiFi \
   $(ESP_LIBS)/ESP8266WebServer \
   $(ESP_LIBS)/ESP8266mDNS \
-  ~/Arduino/libraries/SSD1306 \
-  ~/Arduino/libraries/rc-switch \
-  ~/Arduino/libraries/UIPEthernet \
+  ~/git/opensprinkler-libs/esp8266-oled-ssd1306 \
+  ~/git/opensprinkler-libs/rc-switch \
+  ~/git/opensprinkler-libs/UIPEthernet \
 
-ESP_ROOT = $(HOME)/esp8266_2.5.2/
+ESP_ROOT = $(HOME)/git/esp8266_2.5.2/
 ESPCORE_VERSION = 252
 BUILD_ROOT = /tmp/$(MAIN_NAME)
 

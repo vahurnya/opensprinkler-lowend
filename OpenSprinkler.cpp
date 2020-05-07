@@ -426,6 +426,7 @@ time_t OpenSprinkler::now_tz() {
 #if defined(ARDUINO)	// AVR network init functions
 
 bool detect_i2c(int addr) {
+    if (addr==ACDR_I2CADDR) {return true;}     // This is a dedicated
 	Wire.beginTransmission(addr);
 	return (Wire.endTransmission()==0); // successful if received 0
 }
@@ -643,7 +644,7 @@ void OpenSprinkler::begin() {
 	else if(detect_i2c(LADR_I2CADDR)) hw_type = HW_TYPE_LATCH;
 	
 	/* detect hardware revision type */
-	if(detect_i2c(MAIN_I2CADDR)) {	// check if main PCF8574 exists
+	if(detect_i2c(ACDR_I2CADDR)) {	// check if main PCF8574 exists [ip] In my case there is no MAIN_I2CADDR but an ACDR_I2CADDR (8 bits on the extender address)
 		/* assign revision 0 pins */
 		PIN_BUTTON_1 = V0_PIN_BUTTON_1;
 		PIN_BUTTON_2 = V0_PIN_BUTTON_2;
@@ -2561,8 +2562,8 @@ void OpenSprinkler::detect_expanders() {
 		if(type==IOEXP_TYPE_9555) {
 			expanders[i] = new PCA9555(address);
 			expanders[i]->i2c_write(NXP_CONFIG_REG, 0); // set all channels to output
-		} else if(type==IOEXP_TYPE_8575){
-			expanders[i] = new PCF8575(address);
+		} else if(type==IOEXP_TYPE_8574){				// [ip] In my case the expander is a PCF8574
+			expanders[i] = new PCF8574(address);
 		} else {
 			expanders[i] = new IOEXP(address);
 		}

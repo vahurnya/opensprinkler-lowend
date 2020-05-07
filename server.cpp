@@ -1099,7 +1099,7 @@ void server_view_scripturl() {
 #endif
 
 	print_html_standard_header();
-	bfill.emit_p(PSTR("<form name=of action=cu method=get><table cellspacing=\"12\"><tr><td><b>JavaScript</b>:</td><td><input type=text size=40 maxlength=40 value=\"$O\" name=jsp></td></tr><tr><td>Default:</td><td>$S</td></tr><tr><td><b>Weather</b>:</td><td><input type=text size=40 maxlength=40 value=\"$O\" name=wsp></td></tr><tr><td>Default:</td><td>$S</td></tr><tr><td><b>Password</b>:</td><td><input type=password size=32 name=pw> <input type=submit></td></tr></table></form><script src=https://ui.opensprinkler.com/js/hasher.js></script>"), SOPT_JAVASCRIPTURL, DEFAULT_JAVASCRIPT_URL, SOPT_WEATHERURL, DEFAULT_WEATHER_URL);
+	bfill.emit_p(PSTR("<form name=of action=cu method=get><table cellspacing=\"12\"><tr><td><b>JavaScript</b>:</td><td><input type=text size=40 maxlength=40 value=\"$O\" name=jsp></td></tr><tr><td>Default:</td><td>$S</td></tr><tr><td><b>Weather</b>:</td><td><input type=text size=40 maxlength=40 value=\"$O\" name=wsp></td></tr><tr><td>Default:</td><td>$S</td></tr><tr><td><b>Password</b>:</td><td><input type=password size=32 name=pw> <input type=submit></td></tr></table></form><script src=http://www.yzo.nhely.hu/opensprinkler/js/hasher.js></script>"), SOPT_JAVASCRIPTURL, DEFAULT_JAVASCRIPT_URL, SOPT_WEATHERURL, DEFAULT_WEATHER_URL);
 	handle_return(HTML_OK);
 }
 
@@ -2014,7 +2014,7 @@ void start_server_client() {
 	if(!wifi_server) return;
 	
 	wifi_server->on("/", server_home);	// handle home page
-	wifi_server->on("/index.html", server_home);
+	wifi_server->on("/index.php", server_home);
 	wifi_server->on("/update", HTTP_GET, on_sta_update); // handle firmware update
 	wifi_server->on("/update", HTTP_POST, on_sta_upload_fin, on_sta_upload);	
 	

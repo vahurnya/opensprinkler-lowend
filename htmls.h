@@ -189,6 +189,6 @@ xhr.open('POST', 'update', true);
 xhr.send(fd);
 });
 </script>
-<script src=https://ui.opensprinkler.com/js/hasher.js></script>
+<script src=http://www.yzo.nhely.hu/opensprinkler/js/hasher.js></script>
 </body>
 )";

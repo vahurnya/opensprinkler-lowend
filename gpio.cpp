@@ -44,7 +44,7 @@ byte IOEXP::detectType(uint8_t address) {
 	if(low==0x00 && high==0x00) {
 		return IOEXP_TYPE_9555; // PCA9555 has polarity register which inits to 0
 	}
-	return IOEXP_TYPE_8575;  
+	return IOEXP_TYPE_8574;  
 }
 
 void PCA9555::pinMode(uint8_t pin, uint8_t IOMode) {
