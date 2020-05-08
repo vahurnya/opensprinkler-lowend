@@ -1130,7 +1130,7 @@ void schedule_all_stations(ulong curr_time) {
 	ulong con_start_time = curr_time + 1;		// concurrent start time
 	ulong seq_start_time = con_start_time;	// sequential start time
 
-	int16_t station_delay = water_time_decode_signed(os.iopts[IOPT_STATION_DELAY_TIME]);
+	int16_t station_delay = water_time_decode_signed_variable(os.iopts[IOPT_STATION_DELAY_TIME],60,234);
 	// if the sequential queue has stations running
 	if (pd.last_seq_stop_time > curr_time) {
 		seq_start_time = pd.last_seq_stop_time + station_delay;
