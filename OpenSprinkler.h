@@ -115,6 +115,7 @@ struct HTTPStationData {
 
 /** Volatile controller status bits */
 struct ConStatus {
+	byte frequent_ntp:1;	// [ip] due to lack of RTC the ntp requests will be frequent after boot until success
 	byte enabled:1;						// operation enable (when set, controller operation is enabled)
 	byte rain_delayed:1;			// rain delay bit (when set, rain delay is applied)
 	byte sensor1:1;						// sensor1 status bit (when set, sensor1 on is detected)
@@ -189,7 +190,7 @@ public:
 	static ulong checkwt_success_lasttime; // time when weather check was successful
 	static ulong powerup_lasttime;			// time when controller is powered up most recently
 	static uint8_t last_reboot_cause;		// last reboot cause
-	static byte  weather_update_flag; 
+	static byte  weather_update_flag;
 	// member functions
 	// -- setup
 	static void update_dev();		// update software for Linux instances

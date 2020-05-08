@@ -53,6 +53,7 @@ void remote_http_callback(char*);
 // Small variations have been added to the timing values below
 // to minimize conflicting events
 #define NTP_SYNC_INTERVAL				86413L 	// NYP sync interval, in units of seconds
+#define NTP_SYNC_INTERVAL_FREQUENT		10L // frequent NTP sync requirement after boot
 #define RTC_SYNC_INTERVAL				3607		// RTC sync interval, 3600 secs
 #define CHECK_NETWORK_INTERVAL	601			// Network checking timeout, 10 minutes
 #define CHECK_WEATHER_TIMEOUT		7207L		// Weather check interval: 2 hours
@@ -320,6 +321,7 @@ void do_setup() {
 		os.status.network_fails = 1;
 	}
 	os.status.req_network = 0;
+	os.status.frequent_ntp = 1;
 	os.status.req_ntpsync = 1;
 
 	os.apply_all_station_bits(); // reset station bits
@@ -965,7 +967,8 @@ void do_loop()
 		// instead of using curr_time, which may change due to NTP sync itself
 		// we use Arduino's millis() method
 		//if (curr_time % NTP_SYNC_INTERVAL == 0) os.status.req_ntpsync = 1;
-		if((millis()/1000) % NTP_SYNC_INTERVAL==0) os.status.req_ntpsync = 1;
+		if((os.status.frequent_ntp==0) && ((millis()/1000) % NTP_SYNC_INTERVAL==0) ||
+			(os.status.frequent_ntp==1) && ((millis()/1000) % NTP_SYNC_INTERVAL_FREQUENT==0)) os.status.req_ntpsync = 1;
 		perform_ntp_sync();
 
 		// check network connection
