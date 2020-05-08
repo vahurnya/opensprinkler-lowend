@@ -1689,6 +1689,7 @@ void perform_ntp_sync() {
 		}
 		if (t>0) {
 			setTime(t);
+			os.status.frequent_ntp=0;
 			RTC.set(t);
 			DEBUG_PRINTLN(RTC.get());
 			#if !defined(ESP8266)
