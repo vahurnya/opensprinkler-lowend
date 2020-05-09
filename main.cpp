@@ -52,7 +52,7 @@ void remote_http_callback(char*);
 
 // Small variations have been added to the timing values below
 // to minimize conflicting events
-#define NTP_SYNC_INTERVAL				86413L 	// NYP sync interval, in units of seconds
+#define NTP_SYNC_INTERVAL				3600L 	// NYP sync interval, in units of seconds
 #define NTP_SYNC_INTERVAL_FREQUENT		10L // frequent NTP sync requirement after boot
 #define RTC_SYNC_INTERVAL				3607		// RTC sync interval, 3600 secs
 #define CHECK_NETWORK_INTERVAL	601			// Network checking timeout, 10 minutes
@@ -298,9 +298,9 @@ void do_setup() {
 
 	pd.init();						// ProgramData init
 
-	setSyncInterval(RTC_SYNC_INTERVAL);  // RTC sync interval
-	// if rtc exists, sets it as time sync source
-	setSyncProvider(RTC.get);
+	// setSyncInterval(RTC_SYNC_INTERVAL);  // RTC sync interval  
+	// // if rtc exists, sets it as time sync source
+	// setSyncProvider(RTC.get);
 	os.lcd_print_time(os.now_tz());  // display time to LCD
 	os.powerup_lasttime = os.now_tz();
 	
