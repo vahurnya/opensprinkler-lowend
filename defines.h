@@ -36,7 +36,7 @@ typedef unsigned long ulong;
                             // if this number is different from the one stored in non-volatile memory
                             // a device reset will be automatically triggered
 
-#define OS_FW_MINOR      113  // Firmware minor version
+#define OS_FW_MINOR      114  // Firmware minor version
 
 /** Hardware version base numbers */
 #define OS_HW_VERSION_BASE   0x00
@@ -316,6 +316,7 @@ enum {
 	extern byte PIN_SENSOR1;
 	extern byte PIN_SENSOR2;
 	extern byte PIN_IOEXP_INT;
+	extern byte PIN_PWR_SENSOR1;
 
 	/* Original OS30 pin defines */
 	//#define V0_MAIN_INPUTMASK 0b00001010 // main input pin mask
@@ -331,6 +332,7 @@ enum {
 	#define V0_PIN_BOOST_EN      IOEXP_PIN+7
 	#define V0_PIN_SENSOR1       12 // sensor 1
 	#define V0_PIN_SENSOR2       13 // sensor 2
+	#define V0_PIN_PWR_SENSOR1   15 // power supply for sensor1 (rain) *IP
 
 	/* OS30 revision 1 pin defines */
 	// pins on PCA9555A IO expander have pin numbers IOEXP_PIN+i

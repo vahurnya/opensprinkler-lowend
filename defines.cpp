@@ -13,5 +13,6 @@ byte PIN_LATCH_COM = 255;
 byte PIN_SENSOR1 = 255;
 byte PIN_SENSOR2 = 255;
 byte PIN_IOEXP_INT = 255;
+byte PIN_PWR_SENSOR1 = 255;
 
 #endif

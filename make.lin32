@@ -9,7 +9,7 @@ LIBS = . \
   ~/git/opensprinkler-libs/rc-switch \
   ~/git/opensprinkler-libs/UIPEthernet \
 
-ESP_ROOT = $(HOME)/git/esp8266_2.5.2/
+ESP_ROOT = $(HOME)/git/esp8266/
 ESPCORE_VERSION = 252
 BUILD_ROOT = /tmp/$(MAIN_NAME)
 

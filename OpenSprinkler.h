@@ -175,6 +175,7 @@ public:
 	static byte attrib_spe[];
 		
 	// variables for time keeping
+	static ulong sensor_measurement_suspend_until; // do not make sensor reading until this time
 	static ulong sensor1_on_timer;	// time when sensor1 is detected on last time
 	static ulong sensor1_off_timer; // time when sensor1 is detected off last time
 	static ulong sensor1_active_lasttime; // most recent time sensor1 is activated
