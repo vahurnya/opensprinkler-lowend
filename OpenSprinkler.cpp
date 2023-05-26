@@ -1232,7 +1232,7 @@ void OpenSprinkler::detect_binarysensor_status(ulong curr_time)
 		else
 		{
 			// configure the next measurement time (300 seconds)
-			sensor_measurement_suspend_until = curr_time + 300;
+			sensor_measurement_suspend_until = curr_time + 60;
 			// sensor_type: 0 if normally closed, 1 if normally open
 			if (iopts[IOPT_SENSOR1_TYPE] == SENSOR_TYPE_RAIN || iopts[IOPT_SENSOR1_TYPE] == SENSOR_TYPE_SOIL)
 			{

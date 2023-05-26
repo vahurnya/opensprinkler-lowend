@@ -19,7 +19,7 @@
 
 	function getAssetLocation() {
 		var mainScript = document.querySelector( "script[src$='home.js']" ).src,
-			def = "http://www.yzo.nhely.hu/";
+			def = "http://ui.opensprinkler.com/";
 
 		if ( !mainScript ) {
 			return def;
@@ -327,7 +327,7 @@
 		body.html( loader );
 
 		$.ajax( {
-			url: assetLocation + "index.html",
+			url: assetLocation + "index.php",
 			crossDomain: true,
 			cache: true,
 			type: "GET"

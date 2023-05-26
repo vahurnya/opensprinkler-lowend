@@ -1,5 +1,6 @@
 <?php
  header("Access-Control-Allow-Origin: *"); ?>
+ 
 <!DOCTYPE html>
 <!--
  * OpenSprinkler App
